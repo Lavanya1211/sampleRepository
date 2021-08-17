@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="display">
+            <input type="text" placeholder="0" id="screen">
+        </div>
+        <div class="btns">
+            <div class="row">
+                <button class="btn" onclick="Del()" class="delete">Del</button>
+                <button class="btn" onclick="fact()">x!</button>
+                <button class="btn" onclick="display('(')">(</button>
+                <button class="btn" onclick="display(')')">)</button>
+                <button class="btn" onclick="percentage()">%</button>
+                <button class="btn" onclick="Clear()" class="clear">AC</button>
+            </div>
+            <div class="row">
+                <button class="btn" onclick="sin_func()">sin</button>
+                <button class="btn" onclick="pi_func()">π</button>
+                <button class="btn" onclick="display('7')">7</button>
+                <button class="btn" onclick="display('8')">8</button>
+                <button class="btn" onclick="display('9')">9</button>
+                <button class="btn" onclick="display('/')">/</button>
+            </div>
+            <div class="row">
+                <button class="btn" onclick="cos_func()">cos</button>
+                <button class="btn" onclick="log_func()">log</button>
+                <button class="btn" onclick="display('4')">4</button>
+                <button class="btn" onclick="display('5')">5</button>
+                <button class="btn" onclick="display('6')">6</button>
+                <button class="btn" onclick="display('*')">*</button>
+            </div>
+            <div class="row">
+                <button class="btn" onclick="tan_func()">tan</button>
+                <button class="btn" onclick="sqrt_func()">√</button>
+                <button class="btn" onclick="display('1')">1</button>
+                <button class="btn" onclick="display('2')">2</button>
+                <button class="btn" onclick="display('3')">3</button>
+                <button class="btn" onclick="display('-')">-</button>
+            </div>
+            <div class="row">
+                <button class="btn" onclick="rad()">rad</button>
+                <button class="btn" onclick="pow_func()">x2</button>
+                <button class="btn" onclick="display('0')">0</button>
+                <button class="btn" onclick="display('.')">.</button>
+                <button class="btn" onclick="Calculate()" class="equal">=</button>
+                <button class="btn" onclick="display('+')">+</button>
+            </div>
+        </div>
+    </div>
+<script>
+    let outputScreen = document.getElementById('screen');
+
+    function display(num){
+        outputScreen.value += num;
+    }
+    function Calculate(){
+        try{
+            outputScreen.value = eval(outputScreen.value);
+        }
+        catch(err){
+            alert("Invalid");
+        }
+    }
+    function Clear(){
+        outputScreen.value = "";
+    }
+    function Del(){
+        outputScreen.value = outputScreen.value.slice(0,-1)
+    }
+    function sin_func(){
+        outputScreen.value = Math.sin(outputScreen.value);
+    }
+    function cos_func(){
+        outputScreen.value = Math.cos(outputScreen.value);
+    }
+    function tan_func(){
+        outputScreen.value = Math.tan(outputScreen.value);
+    }
+
+    function log_func(){
+        outputScreen.value = Math.log10(outputScreen.value);
+    }
+    function sqrt_func(){
+        outputScreen.value = Math.sqrt(outputScreen.value);
+    }
+    function pi_func(){
+        outputScreen.value = Math.PI;
+    }
+    function exp_func(){
+        outputScreen.value = Math.exp(outputScreen.value);
+    }
+    function pow_func(num){
+        var square = outputScreen.value;
+        var power = Math.pow(square,2);
+        outputScreen.value = power;
+    }
+    function percentage(){
+        var percentage=outputScreen.value;
+        var temp = eval(percentage);
+        var anpercent = temp*100 + "%";
+        outputScreen.value = anpercent;
+    }
+    function fact(){
+        var n = outputScreen.value;
+        let answer =1;
+        if(n==0 || n==1){
+            answer=1;
+        }else{
+            for(var i=n;i>=1;i--){
+                answer=answer*i;
+            }
+        }
+        outputScreen.value=answer;
+    }
+    function rad(){
+        var radian = outputScreen.value;
+        var radia = (radian*180)/3.14;
+        outputScreen.value= radia;
+    }
+    
+</script>
+</body>
+</html>
